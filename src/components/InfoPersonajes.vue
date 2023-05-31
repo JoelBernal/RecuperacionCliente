@@ -7,10 +7,10 @@
         <div>id: {{ character.id }}</div>
         <div>Status: {{ character.status }}</div>
         <div>gender: {{ character.gender }}</div>
-        <!-- <div>origin: {{ character.origin }}</div>
-        <div>location: {{ character.location }}</div>
-        <div>episode: {{ character.episode }}</div>
-        <div>created: {{ character.created }}</div> -->
+        <div>origin: {{ character.origin.name }}</div>
+        <div>location: {{ character.location.name }}</div>
+        <div>episode: {{ character.episode.length }}</div>
+        <div>created: {{ character.created }}</div>
         <!-- Agrega más atributos del personaje según tus necesidades -->
       </v-card-text>
     </v-card>
