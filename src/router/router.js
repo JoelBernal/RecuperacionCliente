@@ -1,12 +1,12 @@
 import Vue from "vue";
-import VueRouter from 'vue-router'
-import Home from '../views/Home'
-import Login from '../views/Login'
-import Register from '../views/Register'
-import Products from '../views/Products'
-import Usuarios from '../views/Usuarios'
-import InfoUsuario from '../views/InfoUsuario'
-import Carrito from '../views/Carrito'
+import VueRouter from 'vue-router';
+import Personajes from '../views/Personajes';
+import InfoPersonaje from '../views/InfoPersonaje';
+import Episodios from '../views/Episodios';
+import Localizaciones from '../views/Localizaciones';
+import Home from '../views/Home';
+
+
 
 Vue.use(VueRouter)
 
@@ -14,43 +14,34 @@ const routes = [
   {
     path: "/",
     name: "home",
-    component: Home
+    component: Home,
   },
   {
     path: "/home",
     name: "home",
-    component: Home
+    component: Home,
   },
   {
-    path: "/login",
-    name: "login",
-    component: Login
+    path: "/personajes",
+    name: "personajes",
+    component: Personajes,
   },
   {
-    path: "/register",
-    name: "register",
-    component: Register
+    path: '/character/:id',
+    name: 'infoPersonaje',
+    component: InfoPersonaje,
   },
   {
-    path: "/products",
-    name: "products",
-    component: Products
+    path: "/episodios",
+    name: "episodios",
+    component: Episodios,
   },
   {
-    path: "/usuarios",
-    name: "usuarios",
-    component: Usuarios
+    path: "/localizaciones",
+    name: "localizaciones",
+    component: Localizaciones,
   },
-  {
-    path: "/infousuario",
-    name: "infousuario",
-    component: InfoUsuario
-  },
-  {
-    path: "/carrito",
-    name: "Carrito",
-    component: Carrito
-  },
+
 ];
 
 const router = new VueRouter({

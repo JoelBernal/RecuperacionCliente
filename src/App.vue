@@ -1,37 +1,24 @@
 <template>
-  <v-app>
+  <div id="app">
     <router-view>
+      <v-content></v-content>
     </router-view>
-  </v-app>
+  </div>
 </template>
 
 <script>
-import {mapActions, mapState } from 'vuex';
 export default {
-  name: 'App',
-  components: {},
-  created(){
-    this.fetchLibros();
-    this.loginFromCookies();
+  name: "App",
+  created() {
+    this.$store.dispatch('fetchCharacters');
   },
-
-  methods:{
-    ...mapActions(['fetchLibros', 'login']),
-    loginFromCookies(){
-      let idUser = this.$cookies.get("idUsuario");
-      if (idUser != null) {
-        this.login(idUser);
-      }
-    }
-    
-  },
-  computed:{
-    ...mapState(['usuario'])
-  },
-
-   data: () => ({
-     datos: []
-   }),
 };
 </script>
 
+<style>
+#app {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin-top: 40px;
+}
+</style>

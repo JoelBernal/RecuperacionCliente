@@ -1,18 +1,10 @@
-import Vue from 'vue'
-import App from './App.vue'
-import store from './store/store.js'
-import vuetify from './plugins/vuetify'
-import router from './router/router.js'
-import VueCookies from './plugins/Cookies'
-
-
-Vue.config.productionTip = false
+import Vue from 'vue';
+import App from './App.vue';
+import store from './store/store';
+import router from './router/router';
 
 new Vue({
-  el: '#app',
-  store,
   router,
-  vuetify,
-  VueCookies,
+  store, // Asegúrate de agregar el store en la instancia de Vue
   render: h => h(App)
-}).$mount('#app')
+}).$mount('#app');

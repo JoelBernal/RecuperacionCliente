@@ -1,31 +1,25 @@
 <template>
   <div>
-    <div class="divNavbar">
+    <div>
       <Navbar />
     </div>
-
     <div>
-      <Login></Login>
+      <h1 style="padding-bottom: 50px">Lista de Personajes</h1>
+      <CardsPersonajes />
     </div>
   </div>
 </template>
 
 <script>
-import Login from "../components/Login.vue";
 import Navbar from "../components/Navbar.vue";
-
+import CardsPersonajes from "../components/CardsPersonajes.vue";
 
 export default {
-  name: "Home",
   components: {
-    Login,
     Navbar,
+    CardsPersonajes,
   },
 };
 </script>
 
-<style>
-  .divNavbar{
-    position: fixed;
-  }
-</style>
+<style scoped></style>
