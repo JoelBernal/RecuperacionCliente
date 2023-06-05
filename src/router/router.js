@@ -6,6 +6,8 @@ import Episodios from '../views/Episodios';
 import Localizaciones from '../views/Localizaciones';
 import Home from '../views/Home';
 import LocationForm from '../views/LocationForm'
+import EpisodeForm from '../views/EpisodeForm'
+import CharacterForm from '../views/CharacterForm'
 
 
 
@@ -46,6 +48,16 @@ const routes = [
     path: "/locationform",
     name: "locationform",
     component: LocationForm,
+  },
+  {
+    path: "/episodeform",
+    name: "episodeform",
+    component: EpisodeForm,
+  },
+  {
+    path: "/characterform",
+    name: "characterform",
+    component: CharacterForm,
   },
 
 ];

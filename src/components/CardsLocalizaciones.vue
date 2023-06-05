@@ -4,9 +4,11 @@
       <i class="bi bi-list" style="font-size: 40px"></i>
     </v-btn>
 
-    <v-btn class="create-button" fab small color="primary" @click="createLocation">
-      <v-icon>mdi-plus</v-icon>
-    </v-btn>
+    <div>
+      <v-btn class="create-button" small color="primary" @click="createLocation"
+        >Añadir localización</v-btn
+      >
+    </div>
 
     <v-row>
       <v-col v-for="location in getLocations" :key="location.id" cols="2">
@@ -40,7 +42,9 @@ export default {
     },
     createLocation() {
       this.$router.push("/locationForm");
-      this.$store.dispatch("createLocation", { /* datos de la nueva localización */ });
+      this.$store.dispatch("createLocation", {
+        /* datos de la nueva localización */
+      });
     },
   },
 };

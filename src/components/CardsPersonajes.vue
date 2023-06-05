@@ -4,6 +4,10 @@
       <i class="bi bi-list" style="font-size: 40px"></i>
     </v-btn>
 
+    <v-btn class="create-button" small color="primary" @click="addCharacter"
+      >Añadir personaje</v-btn
+    >
+
     <v-text-field
       v-model="searchQuery"
       label="Buscar Personajes"
@@ -55,6 +59,9 @@ export default {
       this.personajesCards = await this.filterPersonajes(this.searchQuery);
       console.log(this.personajesCards);
     },
+    addCharacter() {
+      this.$router.push("/characterform");
+    },
   },
 
   mounted() {
@@ -78,6 +85,13 @@ export default {
   position: fixed;
   top: 20px;
   left: 20px;
+  z-index: 9999;
+}
+
+.create-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
   z-index: 9999;
 }
 </style>

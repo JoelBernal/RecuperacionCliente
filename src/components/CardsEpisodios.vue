@@ -4,6 +4,12 @@
       <i class="bi bi-list" style="font-size: 40px"></i>
     </v-btn>
 
+    <div>
+      <v-btn class="create-button" small color="primary" @click="createCharacter"
+        >Añadir personaje</v-btn
+      >
+    </div>
+
     <v-row>
       <v-col v-for="episode in getEpisodes" :key="episode.id" cols="2">
         <v-card>
@@ -33,6 +39,12 @@ export default {
     goToHome() {
       this.$router.push("/");
     },
+    createEpisode() {
+      this.$router.push("/episodeForm");
+      this.$store.dispatch("createCharacter", {
+        /* datos del nuevo episodio */
+      });
+    },
   },
 };
 </script>
@@ -51,5 +63,12 @@ export default {
 
 .v-btn.home-button .v-icon {
   color: white;
+}
+
+.create-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
 }
 </style>
