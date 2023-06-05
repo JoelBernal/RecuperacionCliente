@@ -4,6 +4,10 @@
       <i class="bi bi-list" style="font-size: 40px"></i>
     </v-btn>
 
+    <v-btn class="create-button" fab small color="primary" @click="createLocation">
+      <v-icon>mdi-plus</v-icon>
+    </v-btn>
+
     <v-row>
       <v-col v-for="location in getLocations" :key="location.id" cols="2">
         <v-card>
@@ -34,6 +38,10 @@ export default {
     goToHome() {
       this.$router.push("/");
     },
+    createLocation() {
+      this.$router.push("/locationForm");
+      this.$store.dispatch("createLocation", { /* datos de la nueva localización */ });
+    },
   },
 };
 </script>
@@ -52,5 +60,12 @@ export default {
 
 .v-btn.home-button .v-icon {
   color: white;
+}
+
+.create-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
 }
 </style>

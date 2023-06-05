@@ -5,6 +5,7 @@ import InfoPersonaje from '../views/InfoPersonaje';
 import Episodios from '../views/Episodios';
 import Localizaciones from '../views/Localizaciones';
 import Home from '../views/Home';
+import LocationForm from '../views/LocationForm'
 
 
 
@@ -40,6 +41,11 @@ const routes = [
     path: "/localizaciones",
     name: "localizaciones",
     component: Localizaciones,
+  },
+  {
+    path: "/locationform",
+    name: "locationform",
+    component: LocationForm,
   },
 
 ];
