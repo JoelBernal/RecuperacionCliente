@@ -31,6 +31,8 @@ export default new Vuex.Store({
     }
   },
   actions: {
+
+    //Fetch personajes
     fetchCharacters({ commit }) {
       return axios
         .get('https://rickandmortyapi.com/api/character')
@@ -42,6 +44,7 @@ export default new Vuex.Store({
         });
     },
 
+    //Fetch episodios
     fetchEpisodes({ commit }) {
       return axios
         .get('https://rickandmortyapi.com/api/episode')
@@ -53,6 +56,7 @@ export default new Vuex.Store({
         });
     },
 
+    //Fetch localicaciones
     fetchLocations({ commit }) {
       return axios
         .get('https://rickandmortyapi.com/api/location')
@@ -62,7 +66,11 @@ export default new Vuex.Store({
         .catch(error => {
           console.error(error);
         });
-    }
+    },
+
+    filterPersonajes(store, name) {
+      return this.state.characters.filter(l => l.name.toLowerCase().includes(name.toLowerCase()));
+    },
   },
   mutations: {
     SET_CHARACTERS(state, characters) {

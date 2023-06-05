@@ -1,25 +1,30 @@
 <template>
   <div>
     <div>
-      <Navbar />
+      <Navbar/>
     </div>
     <div>
       <h1 style="padding-bottom: 50px">Lista de Personajes</h1>
-      <CardsPersonajes />
+      <CardsPersonajes/>
     </div>
+    <Footer/>
   </div>
 </template>
 
 <script>
 import Navbar from "../components/Navbar.vue";
 import CardsPersonajes from "../components/CardsPersonajes.vue";
+import Footer from "../components/Footer.vue";
 
 export default {
   components: {
     Navbar,
     CardsPersonajes,
+    Footer,
   },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+
+</style>
