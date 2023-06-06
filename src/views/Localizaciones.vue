@@ -1,9 +1,12 @@
 <template>
   <div>
-    <Navbar></Navbar>
-    <h1 style="padding-bottom: 50px">Lista de Localizaciones</h1>
-    <CardsLocalizaciones />
-    <Footer></Footer>
+    <div>
+      <Navbar/>
+    </div>
+    <div>
+      <CardsLocalizaciones/>
+    </div>
+    <Footer/>
   </div>
 </template>
 

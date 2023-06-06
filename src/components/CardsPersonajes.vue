@@ -1,35 +1,36 @@
 <template>
   <div>
-    <v-btn class="home-button" icon color="black" fab large @click="goToHome">
-      <i class="bi bi-list" style="font-size: 40px"></i>
-    </v-btn>
+    <div class="styleTitulos">
+      <div style="width: 30%">
+        <div class="search-container">
+          <input
+            type="text"
+            v-model="searchQuery"
+            placeholder="Buscar personaje"
+            class="search-input"
+          />
+          <button class="search-button" @click="buscarPersonajes">
+            <i class="bi bi-search remove-background"></i>
+          </button>
+        </div>
+      </div>
 
-    <v-btn class="create-button" small color="primary" @click="addCharacter"
-      >Añadir personaje</v-btn
-    >
+      <h1 style="width: 30%">Lista de Personajes</h1>
 
-    <v-text-field
-      v-model="searchQuery"
-      label="Buscar Personajes"
-      filled
-      solo
-      dense
-      append-icon="mdi-magnify"
-      class="search-bar"
-      @keyup.enter="buscarPersonajes"
-    ></v-text-field>
+      <div style="width: 30%">
+        <v-btn style="margin-left: 20px" @click="addCharacter">
+          Añadir Personaje
+        </v-btn>
+      </div>
+    </div>
 
     <v-row>
-      <v-col v-for="character in getCharacters" :key="character.id" cols="2">
-        <v-card>
+      <v-col v-for="character in filteredCharacters" :key="character.id" cols="2">
+        <v-card style="border: 1px solid black">
           <router-link class="noDecoration" :to="`/character/${character.id}`">
             <v-img :src="character.image" alt="Character Image"></v-img>
             <v-card-title>{{ character.name }}</v-card-title>
-            <v-card-text>
-              <!-- <div>Species: {{ character.species }}</div>
-              <div>Status: {{ character.status }}</div> -->
-              <!-- Agrega más atributos del personaje según tus necesidades -->
-            </v-card-text>
+            <v-card-text> </v-card-text>
           </router-link>
         </v-card>
       </v-col>
@@ -43,33 +44,33 @@ import { mapGetters } from "vuex";
 export default {
   data() {
     return {
-      personajesCards: [],
+      searchQuery: '',
     };
   },
 
   computed: {
-    ...mapGetters(["getCharacters"]),
+    ...mapGetters(["getCharacters", "getCharacterById"]),
+    filteredCharacters() {
+      if (this.searchQuery) {
+        return this.getCharacters.filter(character =>
+          character.name.toLowerCase().includes(this.searchQuery.toLowerCase())
+        );
+      } else {
+        return this.getCharacters;
+      }
+    },
   },
 
   methods: {
     goToHome() {
       this.$router.push("/");
     },
-    async buscarPersonajes() {
-      this.personajesCards = await this.filterPersonajes(this.searchQuery);
-      console.log(this.personajesCards);
+    buscarPersonajes() {
+      // Realizar la búsqueda de personajes aquí
+      console.log("Realizando búsqueda de personajes...");
     },
     addCharacter() {
       this.$router.push("/characterform");
-    },
-  },
-
-  mounted() {
-    this.buscarPersonajes();
-  },
-  watch: {
-    personaje() {
-      this.buscarPersonajes();
     },
   },
 };
@@ -81,17 +82,41 @@ export default {
   color: black;
 }
 
-.home-button {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  z-index: 9999;
+.styleTitulos {
+  display: flex;
+  padding: 40px;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.create-button {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 9999;
+.search-container {
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  margin-bottom: 10px;
+  padding: 5px;
+  width: 200px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  outline: none;
+  font-size: 14px;
+}
+
+.search-button {
+  border: none;
+  padding: 5px;
+  margin-left: 5px;
+  cursor: pointer;
+  transform: scaleX(-1);
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  margin-bottom: 5px;
 }
 </style>

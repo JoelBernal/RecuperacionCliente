@@ -4,7 +4,6 @@
       <Navbar/>
     </div>
     <div>
-      <h1 style="padding-bottom: 50px">Lista de Personajes</h1>
       <CardsPersonajes/>
     </div>
     <Footer/>

@@ -1,20 +1,41 @@
 <template>
-    <div>
-      <h1 style="padding-bottom: 50px;">Lista de Episodios</h1>
-      <CardsEpisodios />
-    </div>
-  </template>
-  
-  <script>
-  import CardsEpisodios from "../components/CardsEpisodios.vue";
-  
-  export default {
-    components: {
-    CardsEpisodios
+  <div class="app">
+    <main class="content">
+      <div>
+        <Navbar />
+      </div>
+      <div>
+        <CardsEpisodios />
+      </div>
+    </main>
+    <Footer class="footer"/>
+  </div>
+</template>
+
+<script>
+import CardsEpisodios from "../components/CardsEpisodios.vue";
+import Navbar from "../components/Navbar.vue";
+
+export default {
+  components: {
+    CardsEpisodios,
+    Navbar,
+  },
+};
+</script>
+
+<style scoped>
+  .app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
-  };
-  </script>
-  
-  <style scoped>
-  
-  </style>
+
+.content {
+  flex: 1;
+}
+
+.footer {
+  flex-shrink: 0;
+}
+</style>

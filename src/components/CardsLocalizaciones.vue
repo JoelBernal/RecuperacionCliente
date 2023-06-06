@@ -1,18 +1,30 @@
 <template>
   <div>
-    <v-btn class="home-button" icon color="black" fab large @click="goToHome">
-      <i class="bi bi-list" style="font-size: 40px"></i>
-    </v-btn>
-
-    <div>
-      <v-btn class="create-button" small color="primary" @click="createLocation"
-        >Añadir localización</v-btn
-      >
+    <div class="styleTitulos">
+      <div style="width: 30%">
+        <div class="search-container">
+          <input
+            type="text"
+            v-model="searchQuery"
+            placeholder="Buscar localización"
+            class="search-input"
+          />
+          <button class="search-button" @click="buscarLocalizaciones">
+            <i class="bi bi-search remove-background"></i>
+          </button>
+        </div>
+      </div>
+      <h1 style="width: 30%">Lista de Localizaciones</h1>
+      <div style="width: 30%">
+        <v-btn style="margin-left: 20px" @click="createLocation">
+          Añadir localización
+        </v-btn>
+      </div>
     </div>
 
     <v-row>
-      <v-col v-for="location in getLocations" :key="location.id" cols="2">
-        <v-card>
+      <v-col v-for="location in filteredLocations" :key="location.id" cols="2">
+        <v-card style="border: 1px solid black">
           <v-img :src="location.image" alt="Location Image"></v-img>
           <v-card-title>{{ location.name }}</v-card-title>
           <v-card-text>
@@ -30,8 +42,22 @@
 import { mapGetters } from "vuex";
 
 export default {
+  data() {
+    return {
+      searchQuery: "",
+    };
+  },
   computed: {
-    ...mapGetters(["getLocations"]),
+    ...mapGetters(["getLocations", "getLocationById"]),
+    filteredLocations() {
+      if (this.searchQuery) {
+        return this.getLocations.filter((location) =>
+          location.name.toLowerCase().includes(this.searchQuery.toLowerCase())
+        );
+      } else {
+        return this.getLocations;
+      }
+    },
   },
   created() {
     this.$store.dispatch("fetchLocations");
@@ -39,6 +65,10 @@ export default {
   methods: {
     goToHome() {
       this.$router.push("/");
+    },
+    buscarLocalizaciones() {
+      // Realizar la búsqueda de localizaciones aquí
+      console.log("Realizando búsqueda de localizaciones...");
     },
     createLocation() {
       this.$router.push("/locationForm");
@@ -71,5 +101,35 @@ export default {
   top: 20px;
   right: 20px;
   z-index: 9999;
+}
+
+.styleTitulos {
+  display: flex;
+  padding: 40px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  margin-bottom: 10px;
+  padding: 5px;
+  width: 200px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  outline: none;
+  font-size: 14px;
+}
+
+.search-button {
+  border: none;
+  padding: 5px;
+  margin-left: 5px;
+  cursor: pointer;
+  transform: scaleX(-1);
 }
 </style>

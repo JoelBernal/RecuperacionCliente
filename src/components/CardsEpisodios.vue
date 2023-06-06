@@ -1,18 +1,30 @@
 <template>
-  <div>
-    <v-btn class="home-button" icon color="black" fab large @click="goToHome">
-      <i class="bi bi-list" style="font-size: 40px"></i>
-    </v-btn>
-
-    <div>
-      <v-btn class="create-button" small color="primary" @click="createCharacter"
-        >Añadir personaje</v-btn
-      >
+  <div style="background-color: ">
+    <div class="styleTitulos">
+      <div style="width: 30%">
+        <div class="search-container">
+          <input
+            type="text"
+            v-model="searchQuery"
+            placeholder="Buscar episodio"
+            class="search-input"
+          />
+          <button class="search-button" @click="buscarEpisodios">
+            <i class="bi bi-search remove-background"></i>
+          </button>
+        </div>
+      </div>
+      <h1 style="width: 30%">Lista de Episodios</h1>
+      <div style="width: 30%">
+        <v-btn style="margin-left: 20px" @click="createEpisode">
+          Añadir episodio
+        </v-btn>
+      </div>
     </div>
 
     <v-row>
-      <v-col v-for="episode in getEpisodes" :key="episode.id" cols="2">
-        <v-card>
+      <v-col v-for="episode in filteredEpisodes" :key="episode.id" cols="2">
+        <v-card style="border: 1px solid black">
           <v-card-title>{{ episode.name }}</v-card-title>
           <v-card-text>
             <div>Episode: {{ episode.episode }}</div>
@@ -29,8 +41,22 @@
 import { mapGetters } from "vuex";
 
 export default {
+  data() {
+    return {
+      searchQuery: "",
+    };
+  },
   computed: {
-    ...mapGetters(["getEpisodes"]),
+    ...mapGetters(["getEpisodes", "getEpisodeById"]),
+    filteredEpisodes() {
+      if (this.searchQuery) {
+        return this.getEpisodes.filter((episode) =>
+          episode.name.toLowerCase().includes(this.searchQuery.toLowerCase())
+        );
+      } else {
+        return this.getEpisodes;
+      }
+    },
   },
   created() {
     this.$store.dispatch("fetchEpisodes");
@@ -38,6 +64,10 @@ export default {
   methods: {
     goToHome() {
       this.$router.push("/");
+    },
+    buscarEpisodios() {
+      // Realizar la búsqueda de episodios aquí
+      console.log("Realizando búsqueda de episodios...");
     },
     createEpisode() {
       this.$router.push("/episodeForm");
@@ -70,5 +100,35 @@ export default {
   top: 20px;
   right: 20px;
   z-index: 9999;
+}
+
+.styleTitulos {
+  display: flex;
+  padding: 40px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  margin-bottom: 10px;
+  padding: 5px;
+  width: 200px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  outline: none;
+  font-size: 14px;
+}
+
+.search-button {
+  border: none;
+  padding: 5px;
+  margin-left: 5px;
+  cursor: pointer;
+  transform: scaleX(-1);
 }
 </style>
