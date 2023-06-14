@@ -15,7 +15,7 @@
         </div>
       </div>
 
-      <h1 style="width: 30%">Lista de Personajes</h1>
+      <h1 class="titulo">Lista de Personajes</h1>
 
       <div style="width: 30%">
         <v-btn style="margin-left: 20px" @click="addCharacter">
@@ -25,7 +25,11 @@
     </div>
 
     <v-row>
-      <v-col v-for="character in filteredCharacters" :key="character.id" cols="2">
+      <v-col
+        v-for="character in filteredCharacters"
+        :key="character.id"
+        cols="2"
+      >
         <v-card style="border: 1px solid black">
           <router-link class="noDecoration" :to="`/character/${character.id}`">
             <v-img :src="character.image" alt="Character Image"></v-img>
@@ -44,7 +48,7 @@ import { mapGetters } from "vuex";
 export default {
   data() {
     return {
-      searchQuery: '',
+      searchQuery: "",
     };
   },
 
@@ -52,7 +56,7 @@ export default {
     ...mapGetters(["getCharacters", "getCharacterById"]),
     filteredCharacters() {
       if (this.searchQuery) {
-        return this.getCharacters.filter(character =>
+        return this.getCharacters.filter((character) =>
           character.name.toLowerCase().includes(this.searchQuery.toLowerCase())
         );
       } else {
@@ -118,5 +122,14 @@ ul {
 
 li {
   margin-bottom: 5px;
+}
+
+.titulo {
+  width: 30%;
+  font-family: Comic Sans MS;
+  font-weight:bold;
+  font-size: 50px;
+  color: #EBD758;
+  text-shadow: -1px 0 #414D68, 0 1px #414D68, 1px 0 #414D68, 0 -1px #414D68, -2px 2px 0 #414D68, 2px 2px 0 #414D68, 1px 1px #414D68, 2px 2px #414D68, 3px 3px #414D68, 4px 4px #414D68, 5px 5px #414D68, 6px 6px #414D68, 7px 7px #414D68, 8px 8px #414D68, 9px 9px #414D68;
 }
 </style>

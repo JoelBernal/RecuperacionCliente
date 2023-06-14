@@ -14,7 +14,7 @@
           </button>
         </div>
       </div>
-      <h1 style="width: 30%">Lista de Localizaciones</h1>
+      <h1 class="titulo">Lista de Localizaciones</h1>
       <div style="width: 30%">
         <v-btn style="margin-left: 20px" @click="createLocation">
           Añadir localización
@@ -131,5 +131,14 @@ export default {
   margin-left: 5px;
   cursor: pointer;
   transform: scaleX(-1);
+}
+
+.titulo {
+  width: 30%;
+  font-family: Comic Sans MS;
+  font-weight:bold;
+  font-size: 50px;
+  color: #EBD758;
+  text-shadow: -1px 0 #414D68, 0 1px #414D68, 1px 0 #414D68, 0 -1px #414D68, -2px 2px 0 #414D68, 2px 2px 0 #414D68, 1px 1px #414D68, 2px 2px #414D68, 3px 3px #414D68, 4px 4px #414D68, 5px 5px #414D68, 6px 6px #414D68, 7px 7px #414D68, 8px 8px #414D68, 9px 9px #414D68;
 }
 </style>
