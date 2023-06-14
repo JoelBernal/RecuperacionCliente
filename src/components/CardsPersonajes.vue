@@ -15,11 +15,11 @@
         </div>
       </div>
 
-      <h1 class="titulo">Lista de Personajes</h1>
+      <h1 class="titulo">{{leng[idioma].lista_personajes }}</h1>
 
       <div style="width: 30%">
         <v-btn style="margin-left: 20px" @click="addCharacter">
-          Añadir Personaje
+          {{leng[idioma].añadir_personajes }}
         </v-btn>
       </div>
     </div>
@@ -44,16 +44,20 @@
 
 <script>
 import { mapGetters } from "vuex";
+import { mapState, mapActions } from 'vuex';
+import leng from '../idiomas/index.json';
 
 export default {
   data() {
     return {
       searchQuery: "",
+      leng,
     };
   },
 
   computed: {
     ...mapGetters(["getCharacters", "getCharacterById"]),
+    ...mapState(['idioma']),
     filteredCharacters() {
       if (this.searchQuery) {
         return this.getCharacters.filter((character) =>
@@ -66,6 +70,8 @@ export default {
   },
 
   methods: {
+
+    ...mapActions([ 'CambiarIdioma']),
     goToHome() {
       this.$router.push("/");
     },

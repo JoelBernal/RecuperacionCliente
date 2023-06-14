@@ -1,0 +1,27 @@
+{
+    "es": {
+        "localizaciones": "Localizaciones" ,
+        "episodios": "Episodios",
+        "personajes": "Personajes",
+        "añadir_personajes": "Añadir personajes",
+        "añadir_episodios": "Añadir episodios",
+        "añadir_localizaciones": "Añadir localizaciones",
+        "lista_personajes": "Lista de Personajes",
+        "lista_episodios": "Lista de Episodios",
+        "lista_localizaciones": "Lista de Localizaciones",
+        "buscar_personajes": "Buscar personajes"
+        }, 
+        
+    "eng": {
+        "localizaciones": "Locations" ,
+        "episodios": "Episodes",
+        "personajes": "Characters",
+        "añadir_personajes": "Add Character",
+        "añadir_episodios": "Add Episodes",
+        "añadir_localizaciones": "Add Locations",
+        "lista_personajes": "Character list",
+        "lista_episodios" : "Episodes list",
+        "lista_localizaciones": "Locations list",
+        "buscar_personajes": "Search characters"
+    }
+}

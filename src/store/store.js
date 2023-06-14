@@ -9,6 +9,7 @@ export default new Vuex.Store({
     characters: [],
     episodes: [],
     locations: [],
+    idioma: 'es',
   },
   getters: {
     getCharacters(state) {
@@ -72,14 +73,14 @@ export default new Vuex.Store({
     //Post episodios
     postEpisodes({ commit }) {
       return axios
-        .post('https://rickandmortyapi.com/api/episode', {
+        .post("https://rickandmortyapi.com/api/episode", {
           // Datos adicionales a enviar en el cuerpo de la solicitud POST (opcional)
         })
-        .then(response => {
+        .then((response) => {
           // Manejo de la respuesta exitosa
-          commit('SET_EPISODES', response.data.results);
+          commit("SET_EPISODES", response.data.results);
         })
-        .catch(error => {
+        .catch((error) => {
           // Manejo de errores
           console.error(error);
         });
@@ -100,14 +101,14 @@ export default new Vuex.Store({
     //Post localizaciones
     postLocations({ commit }) {
       return axios
-        .post('https://rickandmortyapi.com/api/location', {
+        .post("https://rickandmortyapi.com/api/location", {
           // Datos adicionales a enviar en el cuerpo de la solicitud POST (opcional)
         })
-        .then(response => {
+        .then((response) => {
           // Manejo de la respuesta exitosa
-          commit('SET_LOCATIONS', response.data.results);
+          commit("SET_LOCATIONS", response.data.results);
         })
-        .catch(error => {
+        .catch((error) => {
           // Manejo de errores
           console.error(error);
         });
@@ -118,6 +119,14 @@ export default new Vuex.Store({
         l.name.toLowerCase().includes(name.toLowerCase())
       );
     },
+
+    CambiarIdioma({ commit }, idioma) {
+      commit("setIdioma", idioma);
+    },
+
+    // filterEpisodes(store, episode) {
+    //   return libros.filter((l) => l.categoriaId == episode).length;
+    // },
   },
   mutations: {
     SET_CHARACTERS(state, characters) {
@@ -128,6 +137,9 @@ export default new Vuex.Store({
     },
     SET_LOCATIONS(state, locations) {
       state.locations = locations;
+    },
+    setIdioma(state, idioma) {
+      state.idioma = idioma;
     },
   },
 });

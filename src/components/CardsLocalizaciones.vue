@@ -14,10 +14,10 @@
           </button>
         </div>
       </div>
-      <h1 class="titulo">Lista de Localizaciones</h1>
+      <h1 class="titulo">{{leng[idioma].lista_localizaciones }}</h1>
       <div style="width: 30%">
         <v-btn style="margin-left: 20px" @click="createLocation">
-          Añadir localización
+          {{leng[idioma].añadir_localizaciones }}
         </v-btn>
       </div>
     </div>
@@ -40,15 +40,20 @@
 
 <script>
 import { mapGetters } from "vuex";
+import { mapState, mapActions } from 'vuex';
+import leng from '../idiomas/index.json';
 
 export default {
   data() {
     return {
       searchQuery: "",
+      leng
     };
   },
   computed: {
     ...mapGetters(["getLocations", "getLocationById"]),
+    ...mapState(['idioma']),
+    
     filteredLocations() {
       if (this.searchQuery) {
         return this.getLocations.filter((location) =>
@@ -63,6 +68,8 @@ export default {
     this.$store.dispatch("fetchLocations");
   },
   methods: {
+    ...mapActions([ 'CambiarIdioma']),
+
     goToHome() {
       this.$router.push("/");
     },

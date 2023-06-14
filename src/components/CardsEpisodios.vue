@@ -14,10 +14,10 @@
           </button>
         </div>
       </div>
-      <h1 class="titulo">Lista de Episodios</h1>
+      <h1 class="titulo">{{leng[idioma].lista_episodios }}</h1>
       <div style="width: 30%">
         <v-btn style="margin-left: 20px" @click="createEpisode">
-          Añadir episodio
+          {{leng[idioma].añadir_episodios }}
         </v-btn>
       </div>
     </div>
@@ -39,15 +39,20 @@
 
 <script>
 import { mapGetters } from "vuex";
+import { mapState, mapActions } from 'vuex';
+import leng from '../idiomas/index.json';
 
 export default {
   data() {
     return {
       searchQuery: "",
+      leng,
     };
   },
   computed: {
     ...mapGetters(["getEpisodes", "getEpisodeById"]),
+    ...mapState(['idioma']),
+
     filteredEpisodes() {
       if (this.searchQuery) {
         return this.getEpisodes.filter((episode) =>
@@ -62,6 +67,7 @@ export default {
     this.$store.dispatch("fetchEpisodes");
   },
   methods: {
+    ...mapActions([ 'CambiarIdioma']),
     goToHome() {
       this.$router.push("/");
     },

@@ -1,28 +1,43 @@
 <template>
   <nav>
-    <ul class="navbar-links">
-      <v-btn class="home-button" icon color="black" fab large @click="goToHome">
+    <ul class="navbar-links" style="display: flex; justify-content: space-between;">
+      <div style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
+        <v-btn class="home-button" icon color="black" fab large @click="goToHome">
         <i class="bi bi-list" style="font-size: 40px"></i>
       </v-btn>
       <li>
-        <router-link to="/personajes" class="nav-link">Personajes</router-link>
+        <router-link to="/personajes" class="nav-link">{{leng[idioma].personajes }}</router-link>
       </li>
       <li>
-        <router-link to="/episodios" class="nav-link">Episodios</router-link>
+        <router-link to="/episodios" class="nav-link">{{leng[idioma].episodios }}</router-link>
       </li>
       <li>
         <router-link to="/localizaciones" class="nav-link"
-          >Localizaciones</router-link
+          >{{leng[idioma].localizaciones }}</router-link
         >
       </li>
+      </div>
+      
+      <div >
+      <v-btn style="margin-right: 15px;" @click="CambiarIdioma('es')">ES</v-btn>  
+      <v-btn @click="CambiarIdioma('eng')">ENG</v-btn>   
+    </div>
     </ul>
   </nav>
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex';
+import leng from '../idiomas/index.json';
+
 export default {
   name: "Navbar",
+  data() {
+    return {leng}
+  },
   methods: {
+    ...mapActions([ 'CambiarIdioma']),
+
     goToHome() {
       this.$router.push("/");
     },
@@ -34,6 +49,9 @@ export default {
       this.$router.push("/characterform");
     },
   },
+  computed : {
+    ...mapState(['idioma'])
+  }
 };
 </script>
 
